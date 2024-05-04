@@ -20,6 +20,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
         },
         tags = {
                 @Tag(name = "Film API", description = "API for films"),
+                @Tag(name = "Methods Data API", description = "API for methods data")
         }
 )
 public class OpenApiConfig {

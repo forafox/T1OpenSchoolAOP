@@ -1,6 +1,7 @@
 package org.forafox.service.impl;
 
 import lombok.RequiredArgsConstructor;
+import org.forafox.annotation.TrackTime;
 import org.forafox.domain.Film;
 import org.forafox.exception.ResourceNotFoundException;
 import org.forafox.repository.FilmRepository;
@@ -16,6 +17,7 @@ public class FilmServiceImpl implements FilmService {
     private final FilmRepository filmRepository;
 
     @Override
+    @TrackTime
     public Film create(FilmDTO filmDTO) {
         var film = new Film();
         film.setTitleName(filmDTO.getTitleName());
