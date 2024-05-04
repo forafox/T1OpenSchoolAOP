@@ -2,6 +2,7 @@ package org.forafox.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.forafox.domain.Film;
+import org.forafox.exception.ResourceNotFoundException;
 import org.forafox.repository.FilmRepository;
 import org.forafox.service.FilmService;
 import org.forafox.web.dto.FilmDTO;
@@ -21,7 +22,7 @@ public class FilmServiceImpl implements FilmService {
 
     @Override
     public Film findById(Long id) {
-        return filmRepository.findById(id).orElseThrow();
+        return filmRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Film not found"));
     }
 
     @Override
@@ -31,21 +32,21 @@ public class FilmServiceImpl implements FilmService {
 
     @Override
     public Film findByTitleName(String titleName) {
-        return filmRepository.findFilmByTitleName(titleName).orElseThrow();
+        return filmRepository.findFilmByTitleName(titleName).orElseThrow(() -> new ResourceNotFoundException("Film not found"));
     }
 
     @Override
     public Film findByGenre(String genre) {
-        return filmRepository.findFilmByGenre(genre).orElseThrow();
+        return filmRepository.findFilmByGenre(genre).orElseThrow(() -> new ResourceNotFoundException("Film not found"));
     }
 
     @Override
     public Film findByCountry(String country) {
-        return filmRepository.findFilmByCountry(country).orElseThrow();
+        return filmRepository.findFilmByCountry(country).orElseThrow(() -> new ResourceNotFoundException("Film not found"));
     }
 
     @Override
     public Film findByProducer(String producer) {
-        return filmRepository.findFilmByProducer(producer).orElseThrow();
+        return filmRepository.findFilmByProducer(producer).orElseThrow(() -> new ResourceNotFoundException("Film not found"));
     }
 }
