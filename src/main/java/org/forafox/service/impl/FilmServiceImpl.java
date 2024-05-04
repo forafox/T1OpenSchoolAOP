@@ -17,36 +17,42 @@ public class FilmServiceImpl implements FilmService {
 
     @Override
     public FilmDTO create(FilmDTO filmDTO) {
-        return null;
+        var film = new Film();
+        film.setTitleName(filmDTO.getTitleName());
+        film.setGenre(filmDTO.getGenre());
+        film.setCountry(filmDTO.getCountry());
+        film.setProducer(filmDTO.getProducer());
+        filmRepository.save(film);
+        return filmDTO;
     }
 
     @Override
-    public Film findById(Long id) {
+    public Film getById(Long id) {
         return filmRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Film not found"));
     }
 
     @Override
-    public List<Film> findAll() {
+    public List<Film> getAll() {
         return filmRepository.findAll();
     }
 
     @Override
-    public Film findByTitleName(String titleName) {
+    public Film getByTitleName(String titleName) {
         return filmRepository.findFilmByTitleName(titleName).orElseThrow(() -> new ResourceNotFoundException("Film not found"));
     }
 
     @Override
-    public Film findByGenre(String genre) {
+    public Film getByGenre(String genre) {
         return filmRepository.findFilmByGenre(genre).orElseThrow(() -> new ResourceNotFoundException("Film not found"));
     }
 
     @Override
-    public Film findByCountry(String country) {
+    public Film getByCountry(String country) {
         return filmRepository.findFilmByCountry(country).orElseThrow(() -> new ResourceNotFoundException("Film not found"));
     }
 
     @Override
-    public Film findByProducer(String producer) {
+    public Film getByProducer(String producer) {
         return filmRepository.findFilmByProducer(producer).orElseThrow(() -> new ResourceNotFoundException("Film not found"));
     }
 }

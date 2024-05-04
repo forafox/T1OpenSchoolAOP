@@ -8,15 +8,15 @@ import java.util.List;
 public interface FilmService {
     FilmDTO create(FilmDTO filmDTO);
 
-    Film findById(Long id);
+    Film getById(Long id);
 
-    List<Film> findAll();
+    List<Film> getAll();
 
-    Film findByTitleName(String titleName);
+    Film getByTitleName(String titleName);
 
-    Film findByGenre(String genre);
+    Film getByGenre(String genre);
 
-    Film findByCountry(String country);
+    Film getByCountry(String country);
 
-    Film findByProducer(String producer);
+    Film getByProducer(String producer);
 }
