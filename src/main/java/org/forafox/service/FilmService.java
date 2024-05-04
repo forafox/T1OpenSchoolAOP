@@ -6,7 +6,7 @@ import org.forafox.web.dto.FilmDTO;
 import java.util.List;
 
 public interface FilmService {
-    FilmDTO create(FilmDTO filmDTO);
+    Film create(FilmDTO filmDTO);
 
     Film getById(Long id);
 

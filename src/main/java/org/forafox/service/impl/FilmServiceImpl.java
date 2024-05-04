@@ -16,14 +16,13 @@ public class FilmServiceImpl implements FilmService {
     private final FilmRepository filmRepository;
 
     @Override
-    public FilmDTO create(FilmDTO filmDTO) {
+    public Film create(FilmDTO filmDTO) {
         var film = new Film();
         film.setTitleName(filmDTO.getTitleName());
         film.setGenre(filmDTO.getGenre());
         film.setCountry(filmDTO.getCountry());
         film.setProducer(filmDTO.getProducer());
-        filmRepository.save(film);
-        return filmDTO;
+        return filmRepository.save(film);
     }
 
     @Override
