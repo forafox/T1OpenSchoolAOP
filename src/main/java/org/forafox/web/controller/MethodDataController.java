@@ -8,11 +8,10 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.forafox.service.MethodDataService;
 import org.forafox.web.dto.MethodDataDTO;
+import org.forafox.web.dto.MethodDataStatDTO;
 import org.forafox.web.mapper.MethodDataMapper;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -34,13 +33,35 @@ public class MethodDataController {
     }
 
     @GetMapping("/methodName/{methodName}")
-    @Operation(summary = "Get Method data by method name", description = "Get method data by its name.", operationId = "getAllMethodsDataByMethodName")
+    @Operation(summary = "Get all method data by method name", description = "Get all methods data by its name.", operationId = "getAllMethodsDataByMethodName")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Successful operation"),
     })
     public List<MethodDataDTO> getAllMethodsDataByMethodName(
             @Parameter(description = "Name of the method to be obtained", required = true) @PathVariable String methodName
     ) {
-        return methodDataMapper.toDtoList(methodDataService.getMethodByMethodName(methodName));
+        return methodDataMapper.toDtoList(methodDataService.getAllMethodsByMethodName(methodName));
+    }
+
+    @GetMapping("/stat/{methodName}")
+    @Operation(summary = "Get statistic from method data by method name", description = "Get statistic from all methods data by its name.", operationId = "getStatByMethodName")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Successful operation"),
+    })
+    public MethodDataStatDTO getStatByMethodName(
+            @Parameter(description = "Name of the method to be obtained", required = true) @PathVariable String methodName
+    ) {
+        return methodDataService.getStat(methodName);
+    }
+
+    @DeleteMapping("")
+    @Operation(summary = "Delete all methods data", description = "Delete all methods data ", operationId = "deleteAllMethodsData")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Successful operation"),
+    })
+    public ResponseEntity<String> deleteAllMethodsData(
+    ) {
+        methodDataService.clearData();
+        return ResponseEntity.noContent().build();
     }
 }

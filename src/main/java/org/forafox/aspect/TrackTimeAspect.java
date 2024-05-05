@@ -5,6 +5,7 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.forafox.domain.MethodData;
+import org.forafox.domain.enums.AnnotationType;
 import org.forafox.service.MethodDataService;
 import org.springframework.stereotype.Component;
 
@@ -24,11 +25,11 @@ public class TrackTimeAspect {
 
         long executionTime = System.currentTimeMillis() - start;
 
-        System.out.println(joinPoint.getSignature().toShortString()+ " executed in " + executionTime + "ms");
         var methodData = new MethodData();
-        methodData.setMethodName(joinPoint.getSignature().toShortString());
+        methodData.setMethodName(joinPoint.getSignature().toShortString().replace("(..)", ""));
         methodData.setExecuteTime(executionTime);
         methodData.setExecuteDate(new Date());
+        methodData.setAnnotationType(AnnotationType.DEFAULT);
         methodDataService.save(methodData);
         return proceed;
     }

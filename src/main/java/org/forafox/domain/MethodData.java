@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.forafox.domain.enums.AnnotationType;
 
 import java.util.Date;
 
@@ -19,4 +20,5 @@ public class MethodData {
     private Date executeDate;
     private String methodName;
     private Long executeTime;
+    private AnnotationType annotationType;
 }

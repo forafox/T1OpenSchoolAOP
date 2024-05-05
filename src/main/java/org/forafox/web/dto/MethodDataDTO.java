@@ -2,16 +2,19 @@ package org.forafox.web.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
+import org.forafox.domain.enums.AnnotationType;
 
 import java.util.Date;
 
 @Data
-@Schema(description = "DTO for Methods data entity")
+@Schema(description = "DTO for methods data entity")
 public class MethodDataDTO {
-    @Schema(description = "Execution date of the method", example = "")
+    @Schema(description = "Execution date of the method", example = "2024-05-04T23:29:18.525+00:00")
     private Date executeDate;
-    @Schema(description = "Name of the method", example = "")
+    @Schema(description = "Name of the method", example = "FilmServiceImpl.create(..)")
     private String methodName;
-    @Schema(description = "Execution time of the method", example = "")
+    @Schema(description = "Execution time of the method (ms)", example = "49")
     private Long executeTime;
+    @Schema(description = "Annotation type of the method (ms)", example = "49")
+    private AnnotationType annotationType;
 }
