@@ -44,7 +44,7 @@ public class TrackAsyncTimeAspect {
 
                 return proceed;
             } catch (Throwable e) {
-                log.error("Ошибка AsyncRunnerAspect", e);
+                log.error("Error AsyncRunnerAspect", e);
                 throw new RuntimeException(e);
             }
         });

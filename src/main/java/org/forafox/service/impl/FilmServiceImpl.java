@@ -1,6 +1,7 @@
 package org.forafox.service.impl;
 
 import lombok.RequiredArgsConstructor;
+import org.forafox.annotation.Throw;
 import org.forafox.annotation.TrackAsyncTime;
 import org.forafox.annotation.TrackTime;
 import org.forafox.domain.Film;
@@ -14,6 +15,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Service
+
 public class FilmServiceImpl implements FilmService {
     private final FilmRepository filmRepository;
 
@@ -29,7 +31,8 @@ public class FilmServiceImpl implements FilmService {
     }
 
     @Override
-    public Film getById(Long id) {
+    @Throw
+    public Film getById(Long id){
         return filmRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Film not found"));
     }
 
