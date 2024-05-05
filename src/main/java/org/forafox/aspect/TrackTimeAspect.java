@@ -19,15 +19,18 @@ public class TrackTimeAspect {
 
     @Around("@annotation(org.forafox.annotation.TrackTime)")
     public Object logExecutionTime(ProceedingJoinPoint joinPoint) throws Throwable {
-        long start = System.currentTimeMillis();
+        long startNano = System.nanoTime();
+        long startMilli = System.currentTimeMillis();
 
         Object proceed = joinPoint.proceed();
 
-        long executionTime = System.currentTimeMillis() - start;
+        long executionTimeNano = System.nanoTime() - startNano;
+        long executionTimeMilli = System.currentTimeMillis() - startMilli;
 
         var methodData = new MethodData();
         methodData.setMethodName(joinPoint.getSignature().toShortString().replace("(..)", ""));
-        methodData.setExecuteTime(executionTime);
+        methodData.setExecuteNanoTime(executionTimeNano);
+        methodData.setExecuteMilliTime(executionTimeMilli);
         methodData.setExecuteDate(new Date());
         methodData.setAnnotationType(AnnotationType.DEFAULT);
         methodDataService.save(methodData);

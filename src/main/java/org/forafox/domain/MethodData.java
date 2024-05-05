@@ -19,6 +19,7 @@ public class MethodData {
     private Long id;
     private Date executeDate;
     private String methodName;
-    private Long executeTime;
+    private Long executeNanoTime;
+    private Long executeMilliTime;
     private AnnotationType annotationType;
 }

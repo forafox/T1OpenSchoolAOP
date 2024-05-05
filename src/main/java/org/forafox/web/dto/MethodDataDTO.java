@@ -13,8 +13,10 @@ public class MethodDataDTO {
     private Date executeDate;
     @Schema(description = "Name of the method", example = "FilmServiceImpl.create(..)")
     private String methodName;
+    @Schema(description = "Execution time of the method (nano)", example = "49")
+    private Long executeNanoTime;
     @Schema(description = "Execution time of the method (ms)", example = "49")
-    private Long executeTime;
-    @Schema(description = "Annotation type of the method (ms)", example = "49")
+    private Long executeMilliTime;
+    @Schema(description = "Annotation type of the method", example = "ASYNC")
     private AnnotationType annotationType;
 }

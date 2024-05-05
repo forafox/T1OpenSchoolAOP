@@ -1,6 +1,7 @@
 package org.forafox.service.impl;
 
 import lombok.RequiredArgsConstructor;
+import org.forafox.annotation.TrackAsyncTime;
 import org.forafox.annotation.TrackTime;
 import org.forafox.domain.Film;
 import org.forafox.exception.ResourceNotFoundException;
@@ -33,6 +34,7 @@ public class FilmServiceImpl implements FilmService {
     }
 
     @Override
+    @TrackAsyncTime
     public List<Film> getAll() {
         return filmRepository.findAll();
     }

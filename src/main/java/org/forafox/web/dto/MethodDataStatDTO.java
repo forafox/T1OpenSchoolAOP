@@ -10,11 +10,18 @@ public class MethodDataStatDTO {
     @Schema(description = "Name of the method", example = "")
     private String methodName;
     @Schema(description = "Minimum method execution time (ms)", example = "1")
-    private Long minExecuteTime;
+    private Long minExecuteTimeMilli;
     @Schema(description = "Maximum method execution time (ms)", example = "42")
-    private Long maxExecuteTime;
-    @Schema(description = "Average method execution time (ms)", example = "2")
-    private Long avgExecuteTime;
-    @Schema(description = "Annotation type of the method (ms)", example = "49")
+    private Long maxExecuteTimeMilli;
+    @Schema(description = "Execution time of the method (ms)", example = "49")
+    private Long avgExecuteTimeMilli;
+    @Schema(description = "Minimum method execution time (nano)", example = "112312")
+    private Long minExecuteTimeNano;
+    @Schema(description = "Maximum method execution time (nano)", example = "1903121")
+    private Long maxExecuteTimeNano;
+    @Schema(description = "Execution time of the method (nano)", example = "18156778")
+    private Long avgExecuteTimeNano;
+
+    @Schema(description = "Annotation type of the method", example = "ASYNC")
     private AnnotationType annotationType;
 }
