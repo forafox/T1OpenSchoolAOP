@@ -36,7 +36,7 @@ public class MethodDataServiceImpl implements MethodDataService {
     }
 
     public MethodDataStatDTO getStat(String methodName) {
-        List<MethodData> dataList = getAll();
+        List<MethodData> dataList = getAllMethodsByMethodName(methodName);
         long sumMilli = 0;
         long maxMilli = Long.MIN_VALUE;
         long minMilli = Long.MAX_VALUE;

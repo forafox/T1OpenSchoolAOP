@@ -32,7 +32,7 @@ public class MethodDataController {
         return methodDataMapper.toDtoList(methodDataService.getAll());
     }
 
-    @GetMapping("/methodName/{methodName}")
+    @GetMapping("/{methodName}")
     @Operation(summary = "Get all method data by method name", description = "Get all methods data by its name.", operationId = "getAllMethodsDataByMethodName")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Successful operation"),

@@ -12,6 +12,7 @@ import org.forafox.web.dto.FilmDTO;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 @RestController
 @RequiredArgsConstructor
@@ -38,8 +39,8 @@ public class FilmController {
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Successful operation"),
     })
-    public List<FilmDTO> getAllFilms() {
-        return filmMapper.toDtoList(filmService.getAll());
+    public List<FilmDTO> getAllFilms() throws ExecutionException, InterruptedException {
+        return filmMapper.toDtoList(filmService.getAll().get().get());
     }
 
     @GetMapping("/id/{id}")
@@ -58,10 +59,10 @@ public class FilmController {
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Successful operation"),
     })
-    public FilmDTO getFilmByTitleName(
+    public List<FilmDTO> getFilmByTitleName(
             @Parameter(description = "Title name of the film to be obtained", required = true) @PathVariable String titleName
-    ) {
-        return filmMapper.toDto(filmService.getByTitleName(titleName));
+    ) throws ExecutionException, InterruptedException {
+        return filmMapper.toDtoList(filmService.getByTitleName(titleName).get().get());
     }
 
     @GetMapping("/genre/{genre}")
@@ -69,10 +70,10 @@ public class FilmController {
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Successful operation"),
     })
-    public FilmDTO getFilmByGenre(
+    public List<FilmDTO> getFilmByGenre(
             @Parameter(description = "Genre of the film to be obtained", required = true) @PathVariable String genre
     ) {
-        return filmMapper.toDto(filmService.getByGenre(genre));
+        return filmMapper.toDtoList(filmService.getByGenre(genre));
     }
 
     @GetMapping("/country/{country}")
@@ -80,10 +81,10 @@ public class FilmController {
     @ApiResponses({
            @ApiResponse(responseCode = "200", description = "Successful operation"),
     })
-    public FilmDTO getFilmByCountry(
+    public List<FilmDTO> getFilmByCountry(
             @Parameter(description = "Country of the film to be obtained", required = true) @PathVariable String country
     ) {
-        return filmMapper.toDto(filmService.getByCountry(country));
+        return filmMapper.toDtoList(filmService.getByCountry(country));
     }
 
     @GetMapping("/producer/{producer}")
@@ -91,9 +92,9 @@ public class FilmController {
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Successful operation"),
     })
-    public FilmDTO getFilmByProducer(
+    public List<FilmDTO> getFilmByProducer(
             @Parameter(description = "Producer of the film to be obtained", required = true) @PathVariable String producer
-    ) {
-        return filmMapper.toDto(filmService.getByProducer(producer));
+    ) throws ExecutionException, InterruptedException {
+        return filmMapper.toDtoList(filmService.getByProducer(producer).get().get());
     }
 }

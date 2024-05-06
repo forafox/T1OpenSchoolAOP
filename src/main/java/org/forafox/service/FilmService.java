@@ -4,19 +4,20 @@ import org.forafox.domain.Film;
 import org.forafox.web.dto.FilmDTO;
 
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 public interface FilmService {
     Film create(FilmDTO filmDTO);
 
     Film getById(Long id);
 
-    List<Film> getAll();
+    CompletableFuture<CompletableFuture<List<Film>>> getAll();
 
-    Film getByTitleName(String titleName);
+    CompletableFuture<CompletableFuture<List<Film>>> getByTitleName(String titleName);
 
-    Film getByGenre(String genre);
+    List<Film> getByGenre(String genre);
 
-    Film getByCountry(String country);
+    List<Film> getByCountry(String country);
 
-    Film getByProducer(String producer);
+    CompletableFuture<CompletableFuture<List<Film>>> getByProducer(String producer);
 }
