@@ -32,7 +32,7 @@ public class TrackTimeAspect {
         methodData.setExecuteNanoTime(executionTimeNano);
         methodData.setExecuteMilliTime(executionTimeMilli);
         methodData.setExecuteDate(new Date());
-        methodData.setAnnotationType(AnnotationType.DEFAULT);
+        methodData.setAnnotationType(AnnotationType.NoASYNC);
         methodDataService.save(methodData);
         return proceed;
     }
